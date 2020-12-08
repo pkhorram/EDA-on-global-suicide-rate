@@ -41,7 +41,7 @@ Final.py
 |
 +----raw_data
 |
-+----costumfunction
++----customfunction
     |
     +----processed_data
     |       |   remove_HDI
