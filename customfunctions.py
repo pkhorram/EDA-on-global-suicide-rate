@@ -389,51 +389,7 @@ def suicides_cont_avg(df):
                 
         print('Continent: '+str(list(cont_max_avg.keys())[0])+'\n Highest rate: '+str(list(cont_max_avg.values()))+'\n Lowest rate: '+str(list(cont_min_avg.values())))
 
-        
-def suicide_pearson_population(df):
-    
-    
-    '''
-    '''
-    
-    country_list=np.unique(df['country'])
-    year_list=list(np.unique(df['year']))
 
-    year_list.remove(1985)
-    year_list.remove(1986)
-    year_list.remove(2016)
-        
-    pear=[]
-    
-    for co in country_list:
-        
-        df_c = df[df['country'] == co]
-       
-        dff_facto=[]
-        dff_sui=[]
-        
-        for year in year_list:
-            
-            df_y = df_c[df_c['year'] == year]
-            df_y_s=list(df_y['suicides_no'])
-            n=sum(df_y_s)
-            
-            dff_sui.append(n)
-            
-            df_y_f=list(df_y['population'])
-            df_y_f_int=[]
-            
-            df_y_f_int=df_y_f
-                        
-            nn=sum(df_y_f_int)
-     
-            dff_facto.append(nn)            
-        
-        cor=np.corrcoef(dff_sui,dff_facto)
-        pear.append(cor[1][0])
-
-    return pear
-        
 
 def suicide_gdp(df, *country):
     
