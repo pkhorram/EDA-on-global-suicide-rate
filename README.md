@@ -56,10 +56,23 @@ Final.py
     |       |   suicidecount_gdp_gender
     |       |   suiciderate_age_year
     |       |   suiciderate_age
-    |       |   suicidecount_age
     |       |   suiciderate_cont_time
     |       |   suiciderate_country_time
     |       |   suicides_cont_avg
+    |       |   suicide_gdp
+    |       |   barplot
+    |       |   categorize
+    |       |   suicide_gender_year
+    |       |   suicides_gdp_gender
+    |       |   countries_suicide_rate
+    |       |   suicides_age_year
+    |       |   suicides_per100k_age
+    |       |   suicides_no_age
+    |       |   suicide_by_age_pie
+    |       |   suicide_by_year
+    |       |   suicide_by_age_range
+    |       |   suicide_by_sex
+    |       |   suicide_by_age
     |       |   suicide_pearson_population
     |       |   Sui_by_pop
 ```
