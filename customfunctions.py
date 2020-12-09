@@ -11,8 +11,11 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 def change_gdp_to_ints(df):
-    '''
-    convert gdp_for_year from string to ints 
+    '''convert gdp_for_year from string to ints 
+    
+       Args:
+           df: dataframe
+
     '''
 
     gdp = []
@@ -28,8 +31,11 @@ def change_gdp_to_ints(df):
     return new_df
 
 def add_conts(df):
-    '''
-    adds continent column
+    '''adds continent column
+    
+        Args:
+            df: dataframe
+    
     '''
     cont = pd.read_csv('./countryContinent.csv',encoding = "ISO-8859-1")
     
@@ -66,31 +72,38 @@ def add_conts(df):
 
 
 def remove_HDI(df):
-    '''
-    removes 'HDI for year' column from given df
+    '''removes 'HDI for year' column from given df
+    
+       Args:
+            df: dataframe
+
     '''
     new_df = df.drop(['HDI for year'], axis =1)
     new_df = new_df.dropna()
     return new_df
 
 def rename_suicide_rate(df):
-    '''
-    rename 'suicides/100k pop' to 'suicides_per_100k'
+    '''rename 'suicides/100k pop' to 'suicides_per_100k'
+        Args:
+                df: dataframe
     '''
     new_df=df.rename(columns={"suicides/100k pop": "suicides_per_100k"})
     return new_df
 
 def remove_2016(df):
-    '''
-    removes rows from 2016
+    ''' removes rows from 2016
+        Args:
+                df: dataframe
     '''
     new_df=df[df.year != 2016]
     return new_df
 
 
 def preprocess(df):
-    '''
-    prepares the dataframe
+    '''prepares the dataframe
+    
+        Args:
+            df: dataframe  
     '''
     new_df = remove_HDI(df)
     new_df = change_gdp_to_ints(new_df)
@@ -100,8 +113,10 @@ def preprocess(df):
     return new_df
 
 def suiciderate_gender_year(df):
-    '''
-    plots suicide rate of each gender over the years
+    '''plots suicide rate of each gender over the years
+    
+        Args:
+            df: dataframe
     '''
     for gender in df['sex'].unique():
         df2 = df[df['sex'] == gender]
@@ -127,8 +142,10 @@ def suiciderate_gender_year(df):
     plt.show()
 
 def suicidecount_gender_year(df):
-    '''
-    plots suicide count of each gender over the years
+    '''plots suicide count of each gender over the years
+    
+         Args:
+            df: dataframe
     '''
     for gender in df['sex'].unique():
         df2 = df[df['sex'] == gender]
@@ -154,6 +171,10 @@ def suicidecount_gender_year(df):
     plt.show()
 
 def suiciderate_gdp_gender(df, country='worldwide'):
+    
+    
+    '''
+    '''
 
     if country=='worldwide':
         p1 = df
@@ -189,6 +210,9 @@ def suiciderate_gdp_gender(df, country='worldwide'):
 
 def suicidecount_gdp_gender(df, country='worldwide'):
 
+    '''
+    '''
+    
     if country=='worldwide':
         p1 = df
     else:
@@ -222,6 +246,9 @@ def suicidecount_gdp_gender(df, country='worldwide'):
 
 
 def suiciderate_age_year(df):
+    
+    '''
+    '''
 
     for age in df['age'].unique():
         df2 = df[df['age'] == age]
@@ -253,6 +280,10 @@ def suiciderate_age_year(df):
         plt.show()
 
 def suiciderate_age(df):
+    
+    '''
+    '''
+    
     ages=[]
     rate=[]
     
@@ -266,21 +297,11 @@ def suiciderate_age(df):
     plt.title('suicides rate population by age')
     plt.show()
 
-def suicidecount_age(df):
-    ages=[]
-    rate=[]
-    
-    for age in df['age'].unique():
-        ages.append(age)
-        rate.append(np.sum(df[df['age']==age].suicides_no))
-        
-    
-    fig = plt.figure(figsize=(15,10))
-    plt.pie(rate, labels=ages, autopct='%1.1f%%')
-    plt.title('suicide number total by age')
-    plt.show()
 
 def suiciderate_cont_time(df):
+    
+    '''
+    '''
     
     for cont in df['continent'].unique():
         p1 = df[df['continent']==cont]
@@ -309,6 +330,10 @@ def suiciderate_cont_time(df):
     plt.show()
 
 def suiciderate_country_time(df,country_list):
+    
+    '''
+    '''
+    
     for country in country_list:
         p1 = df[df['country']==country]
         dic ={}
@@ -336,6 +361,10 @@ def suiciderate_country_time(df,country_list):
     plt.show()
 
 def suicides_cont_avg(df):
+    
+    '''
+    '''
+    
     for cont in df['continent'].unique():
         p1 = df[df['continent']==cont]
         cont_max_avg={cont:{'temp':0}}
@@ -362,6 +391,10 @@ def suicides_cont_avg(df):
 
         
 def suicide_pearson_population(df):
+    
+    
+    '''
+    '''
     
     country_list=np.unique(df['country'])
     year_list=list(np.unique(df['year']))
@@ -403,6 +436,10 @@ def suicide_pearson_population(df):
         
 
 def suicide_gdp(df, *country):
+    
+    '''
+    '''
+    
     assert len(country) % 2 ==0
     x = 2
     y = int(len(country)/2)
@@ -443,6 +480,10 @@ def suicide_gdp(df, *country):
 
     
 def barplot(frame, col_x, col_y, country):
+    
+    '''
+    '''
+    
     reduced  = frame.where(frame['country'] == country)
     reduced = reduced.dropna()
     x_axis = reduced[col_x]
@@ -473,6 +514,10 @@ def barplot(frame, col_x, col_y, country):
     
     
 def categorize(column):
+    
+    '''
+    '''
+    
     dict = {}
     key = int(1)
     for i in np.unique(column):
@@ -483,6 +528,9 @@ def categorize(column):
 
     
 def suicide_gender_year(df):
+    
+    '''
+    '''
     
     df2 = df[df['sex'] == 'male']
     dict = {}
@@ -525,6 +573,10 @@ def suicide_gender_year(df):
     plt.show()
     
 def suicides_gdp_gender(df, country):
+    
+    '''
+    '''
+    
     p1 = df[df['country'] == country]
     pm = p1[p1['sex'] == 'male']
     sui_num = []
@@ -569,6 +621,10 @@ def suicides_gdp_gender(df, country):
     
     
 def countries_suicide_rate(df):
+    
+    '''
+    '''
+    
     rate=[]
     countries=[]
 
@@ -583,6 +639,10 @@ def countries_suicide_rate(df):
 
     
 def suicides_age_year(df, age):
+    
+    '''
+    '''
+    
     df2 = df[df['age'] == age]
     dfm = df2[df2['sex']== 'male']
     dict = {}
@@ -628,6 +688,10 @@ def suicides_age_year(df, age):
 
 
 def suicides_per100k_age(df):
+    
+    '''
+    '''
+    
     ages=[]
     rate=[]
     
@@ -641,6 +705,10 @@ def suicides_per100k_age(df):
     plt.show()
     
 def suicides_no_age(df):
+    
+    '''
+    '''
+    
     ages=[]
     rate=[]
     
@@ -655,6 +723,10 @@ def suicides_no_age(df):
     
     
 def suicide_by_age_pie(df):
+    
+    '''
+    '''
+    
     aggregation_functions = {'suicides_no': 'sum'}
     df_sex = df.groupby(df['sex']).aggregate(aggregation_functions)
     plot = df_sex.plot.pie(subplots=True ,figsize=(5, 5),autopct='%1.1f%%',fontsize='17')
@@ -664,6 +736,10 @@ def suicide_by_age_pie(df):
     
     
 def suicide_by_year(df):
+    
+    '''
+    '''
+    
     aggregation_functions = {'suicides_no': 'sum'}
 
     df_yr_sex = df.groupby(['year', 'sex']).agg(aggregation_functions)
@@ -674,6 +750,11 @@ def suicide_by_year(df):
     
     
 def suicide_by_age_range(df):
+    
+    '''
+    '''
+    
+    
     aggregation_functions = {'suicides_no': 'sum'}
 
     
@@ -711,6 +792,10 @@ def suicide_by_age_range(df):
     plt.show()
 
 def suicide_by_sex(df):
+    
+    '''
+    '''
+    
     aggregation_functions = {'suicides_no': 'sum'}
     df_sex = df.groupby(df['sex']).aggregate(aggregation_functions)
     ax = df_sex.plot.bar(rot=0)
@@ -720,6 +805,10 @@ def suicide_by_sex(df):
     
     
 def suicide_by_age(df):
+    
+    '''
+    '''
+    
     aggregation_functions = {'suicides_no': 'sum'}
     df_age = df.groupby(df['age']).aggregate(aggregation_functions)
     df_age = df_age.sort_index()
@@ -738,6 +827,10 @@ def suicide_by_age(df):
 
 
 def suicide_pearson_population(df):
+    
+    '''
+    '''
+    
     
     country_list=np.unique(df['country'])
     year_list=list(np.unique(df['year']))
@@ -778,6 +871,9 @@ def suicide_pearson_population(df):
     return pear
 
 def Sui_by_pop(df, country):
+    
+    '''
+    '''
 
     df_c = df[df['country'] == country]
     country_list=np.unique(df['country'])
