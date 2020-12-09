@@ -61,6 +61,7 @@ Final.py
     |       |   suiciderate_country_time
     |       |   suicides_cont_avg
     |       |   suicide_pearson_population
+    |       |   Sui_by_pop
 ```
 ## Instructions on running the code
 
