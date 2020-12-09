@@ -531,8 +531,12 @@ def suicide_gender_year(df):
 def suicides_gdp_gender(df, country):
     
     '''
+       plot suicide counts versus gdp of each gender of a specific country
+       
+       Args:
+           df: dataframe, country
+
     '''
-    
     p1 = df[df['country'] == country]
     pm = p1[p1['sex'] == 'male']
     sui_num = []
@@ -579,6 +583,11 @@ def suicides_gdp_gender(df, country):
 def countries_suicide_rate(df):
     
     '''
+       plot suicide counts by different countries
+       
+       Args:
+           df: dataframe
+
     '''
     
     rate=[]
@@ -597,6 +606,12 @@ def countries_suicide_rate(df):
 def suicides_age_year(df, age):
     
     '''
+       plot suicide counts of each gender over years of a specific age period
+       From 1985 to 2015
+       
+       Args:
+           df: dataframe, age period
+
     '''
     
     df2 = df[df['age'] == age]
@@ -646,6 +661,11 @@ def suicides_age_year(df, age):
 def suicides_per100k_age(df):
     
     '''
+       plot pie graph to show suicide counts per 100k people ratio of different age periods
+       
+       Args:
+           df: dataframe
+
     '''
     
     ages=[]
@@ -663,6 +683,11 @@ def suicides_per100k_age(df):
 def suicides_no_age(df):
     
     '''
+       plot pie graph to show suicide counts ratio of different age periods
+       
+       Args:
+           df: dataframe
+
     '''
     
     ages=[]
@@ -681,6 +706,11 @@ def suicides_no_age(df):
 def suicide_by_age_pie(df):
     
     '''
+       plot pie graph to show suicide counts ratio of different genders
+       
+       Args:
+           df: dataframe
+
     '''
     
     aggregation_functions = {'suicides_no': 'sum'}
@@ -694,6 +724,12 @@ def suicide_by_age_pie(df):
 def suicide_by_year(df):
     
     '''
+       plot suicide counts over years
+       From 1985 to 2015
+       
+       Args:
+           df: dataframe
+
     '''
     
     aggregation_functions = {'suicides_no': 'sum'}
@@ -708,6 +744,11 @@ def suicide_by_year(df):
 def suicide_by_age_range(df):
     
     '''
+       plot suicide counts versus different age periods of each gender 
+       
+       Args:
+           df: dataframe
+
     '''
     
     
@@ -750,6 +791,11 @@ def suicide_by_age_range(df):
 def suicide_by_sex(df):
     
     '''
+       plot suicide counts versus different genders
+       
+       Args:
+           df: dataframe
+
     '''
     
     aggregation_functions = {'suicides_no': 'sum'}
@@ -763,6 +809,11 @@ def suicide_by_sex(df):
 def suicide_by_age(df):
     
     '''
+       plot suicide counts versus different age periods of each genders
+       
+       Args:
+           df: dataframe
+
     '''
     
     aggregation_functions = {'suicides_no': 'sum'}
@@ -785,8 +836,13 @@ def suicide_by_age(df):
 def suicide_pearson_population(df):
     
     '''
+       calculate pearson correlation between suicides counts and the population of each country 
+       years 1985 1986 2016 are removed
+       
+       Args:
+           df: dataframe
+
     '''
-    
     
     country_list=np.unique(df['country'])
     year_list=list(np.unique(df['year']))
@@ -829,8 +885,14 @@ def suicide_pearson_population(df):
 def Sui_by_pop(df, country):
     
     '''
-    '''
+       plots suicide counts of each country versus the population
+       years 1985 1986 2016 are removed
+       
+       Args:
+           df: dataframe, country
 
+    '''
+    
     df_c = df[df['country'] == country]
     country_list=np.unique(df['country'])
     year_list=list(np.unique(df['year']))
