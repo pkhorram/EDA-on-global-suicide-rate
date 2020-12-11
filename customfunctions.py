@@ -173,7 +173,12 @@ def suicidecount_gender_year(df):
 def suiciderate_gdp_gender(df, country='worldwide'):
     
     
-    '''
+    ''' visualizes suicide rate as a function of GDP seperately 
+        for each gender.
+    
+        Args:
+            df: dataframe
+            country: country
     '''
 
     if country=='worldwide':
@@ -208,46 +213,13 @@ def suiciderate_gdp_gender(df, country='worldwide'):
     plt.grid()
     plt.show()
 
-def suicidecount_gdp_gender(df, country='worldwide'):
-
-    '''
-    '''
-    
-    if country=='worldwide':
-        p1 = df
-    else:
-        p1 = df[df['country'] == country]
-
-    for gender in p1['sex'].unique():
-        pm = p1[p1['sex'] == gender]
-        sui_num = []
-        gdp = []
-        for year in pm['year'].unique():
-            p2 = pm[pm['year'] == year]
-            sui_num.append(sum(p2.suicides_no))
-            gdp.append(np.average(p2['gdp']))
-            
-        x = []
-        y = []
-        for i,j in sorted(zip(gdp,sui_num)):
-            x.append(i)
-            y.append(j)
-
-        plt.scatter(x,y,label=gender)
-    
-    plt.legend(loc='best')
-    
-    plt.title('{}'.format(country))
-    plt.xlabel('gdp')
-    plt.ylabel('suicide count')
-    plt.grid()
-    plt.show()
-
 
 
 def suiciderate_age_year(df):
     
-    '''
+    '''visualizes sucide rate for each age group at different years.
+       Args:
+           df: dataframe
     '''
 
     for age in df['age'].unique():
@@ -281,7 +253,10 @@ def suiciderate_age_year(df):
 
 def suiciderate_age(df):
     
-    '''
+    '''visualizes suiciderate for each age without any other restriction
+    
+        Args:
+            df: dataframe
     '''
     
     ages=[]
@@ -300,7 +275,9 @@ def suiciderate_age(df):
 
 def suiciderate_cont_time(df):
     
-    '''
+    '''visualizes the total number of suicide for each year.
+        Args:
+            df: dataframe
     '''
     
     for cont in df['continent'].unique():
@@ -331,7 +308,11 @@ def suiciderate_cont_time(df):
 
 def suiciderate_country_time(df,country_list):
     
-    '''
+    '''visualizes suicide rate at different countries
+        
+       Args:
+           df: dataframe
+           country_list: list of countries
     '''
     
     for country in country_list:
@@ -362,7 +343,9 @@ def suiciderate_country_time(df,country_list):
 
 def suicides_cont_avg(df):
     
-    '''
+    '''Visualizes the average suicide rate at different countries
+        Args:
+            df: dataframe
     '''
     
     for cont in df['continent'].unique():
@@ -393,7 +376,10 @@ def suicides_cont_avg(df):
 
 def suicide_gdp(df, *country):
     
-    '''
+    ''' Visualizes the impact of gdp for a list of countries on suicide rate in form of subplots
+        Args:
+            df: dataframe:
+            country: series of countries (Must be greater than 1)
     '''
     
     assert len(country) % 2 ==0
@@ -437,7 +423,13 @@ def suicide_gdp(df, *country):
     
 def barplot(frame, col_x, col_y, country):
     
-    '''
+    '''Creates a barplot for any two columns for a specific country:
+        
+        Args:
+            frame: dataframe
+            col_x: first column
+            col_y: second column
+            country: country
     '''
     
     reduced  = frame.where(frame['country'] == country)
@@ -471,7 +463,11 @@ def barplot(frame, col_x, col_y, country):
     
 def categorize(column):
     
-    '''
+    '''categorizes each string column by setting each value to a specific string using a hashing table 
+        (dictionary) and applying to the column.
+    
+        Args:
+            column: column
     '''
     
     dict = {}
@@ -485,7 +481,10 @@ def categorize(column):
     
 def suicide_gender_year(df):
     
-    '''
+    '''visualizes the suicide rate based on gender at different years>
+        
+        Args:
+                df: dataframe
     '''
     
     df2 = df[df['sex'] == 'male']
